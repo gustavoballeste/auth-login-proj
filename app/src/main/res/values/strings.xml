@@ -1,0 +1,17 @@
+<resources>
+
+    <string name="title_enter_post">Enter Post</string>
+    <string name="hint_title">Token</string>
+    <string name="hint_body">Body</string>
+    <string name="action_submit">Submit</string>
+    <string name="title_enter_new_user">Enter new user</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="title_update_user">Update user</string>
+    <string name="hint_token">token</string>
+    <string name="hint_first_name">First name</string>
+    <string name="hint_last_name">Last name</string>
+    <string name="title_auth_user">Autenticating</string>
+    <string name="app_title">Authentication</string>
+
+</resources>
