@@ -8,5 +8,5 @@ import com.gustavoballeste.authlogin.data.model.User;
 
 public interface DetailIView {
     //TODO
-    void updateFiels(User user);
+    void updateScreen(User user);
 }

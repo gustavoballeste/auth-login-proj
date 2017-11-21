@@ -11,8 +11,8 @@ public interface DetailIPresenter {
 
     void startService();
     void submitRetrieve();
-    void submitUpdate(EditText firstName, EditText lastName, EditText username, EditText password);
     void sendPostRetrieve();
-    void sendPostUpdate(UserUpdate up);
-
+    void sendPostUpdateFirstName(String firstName);
+    void sendPostUpdateLastName(String lastName);
+    void sendPostUpdatePassword(String passwordName);
 }
