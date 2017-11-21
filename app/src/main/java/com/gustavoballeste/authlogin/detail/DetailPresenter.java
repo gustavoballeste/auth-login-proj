@@ -2,6 +2,7 @@ package com.gustavoballeste.authlogin.detail;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -130,5 +131,30 @@ public class DetailPresenter implements DetailIPresenter {
                 Log.e(TAG, "Unable to submit post to API.");
             }
         });
+    }
+
+    @Override
+    public void updateValue(String newValue, TextView textView, String name) {
+
+        String message = "";
+        if (!newValue.equals(textView.getText().toString())) {
+            switch (name) {
+                case "firstname":
+                    message = "First name updated successfully!";
+                    sendPostUpdateFirstName(newValue);
+                    break;
+                case "lastname":
+                    message = "Last name updated successfully!";
+                    sendPostUpdateLastName(newValue);
+                    break;
+                case "password":
+                    message = "Password updated successfully!";
+                    sendPostUpdatePassword(newValue);
+                    break;
+            }
+
+            view.refreshData(textView, newValue, message);
+
+        }
     }
 }

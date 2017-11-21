@@ -1,6 +1,8 @@
 package com.gustavoballeste.authlogin.detail;
 
 import android.widget.EditText;
+import android.widget.TextView;
+
 import com.gustavoballeste.authlogin.data.remote.model.UserUpdate;
 
 /**
@@ -14,4 +16,5 @@ public interface DetailIPresenter {
     void sendPostUpdateFirstName(String firstName);
     void sendPostUpdateLastName(String lastName);
     void sendPostUpdatePassword(String passwordName);
+    void updateValue(String newValue, TextView textView, String name);
 }

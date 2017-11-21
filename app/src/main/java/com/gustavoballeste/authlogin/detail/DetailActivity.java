@@ -38,6 +38,12 @@ public class DetailActivity extends AppCompatActivity implements DetailIView {
         lastNameTv.setText(user.getLastName());
     }
 
+    @Override
+    public void refreshData(TextView textView, String newValue, String message) {
+        toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
     @OnClick(R.id.first_name_card_view)
     public void showFirstNameDialog() {
         new MaterialDialog.Builder(this)
@@ -53,10 +59,7 @@ public class DetailActivity extends AppCompatActivity implements DetailIView {
                         null,
                         this.firstNameTv.getText(),
                         false,
-                        (dialog, input) -> updateValue("First name updated successfully!",
-                                input.toString(),
-                                firstNameTv,
-                                "firstname"))
+                        (dialog, input) -> this.presenter.updateValue(input.toString(), firstNameTv,"firstname"))
                 .show();
     }
 
@@ -75,10 +78,7 @@ public class DetailActivity extends AppCompatActivity implements DetailIView {
                         null,
                         this.lastNameTv.getText(),
                         false,
-                        (dialog, input) -> updateValue("Last name updated successfully!",
-                                input.toString(),
-                                lastNameTv,
-                                "lastname"))
+                        (dialog, input) -> this.presenter.updateValue(input.toString(), lastNameTv,"lastname"))
                 .show();
     }
 
@@ -97,36 +97,7 @@ public class DetailActivity extends AppCompatActivity implements DetailIView {
                         null,
                         null,
                         false,
-                        (dialog, input) -> updateValue("Password updated successfully!",
-                                input.toString(),
-                                passwordTv,
-                                "password")
-                )
+                        (dialog, input) -> this.presenter.updateValue(input.toString(), passwordTv,"password"))
                 .show();
-    }
-
-    private void updateValue(String message, String newValue, TextView textView, String name) {
-
-        if (!newValue.equals(textView.getText().toString())) {
-            switch (name) {
-                case "firstname":
-                    presenter.sendPostUpdateFirstName(newValue);
-                    break;
-                case "lastname":
-                    presenter.sendPostUpdateLastName(newValue);
-                    break;
-                case "password":
-                    presenter.sendPostUpdatePassword(newValue);
-                    break;
-            }
-
-            textView.setText(newValue);
-            if (toast != null) {
-                toast.cancel();
-                toast = null;
-            }
-            toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-            toast.show();
-        }
     }
 }
