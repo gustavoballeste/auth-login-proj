@@ -15,4 +15,15 @@
     <string name="app_title">Authentication</string>
     <string name="action_create">Create new user</string>
 
+    <!-- Detail dialogs -->
+    <string name="first_name_input">First name</string>
+    <string name="first_name_input_content">What\'s your first name</string>
+    <string name="last_name_input">Last name</string>
+    <string name="last_name_input_content">What\'s your last name</string>
+    <string name="username_input">Username</string>
+    <string name="username_input_content">Choose your username</string>
+    <string name="password_input">Password</string>
+    <string name="password_input_content">Choose your password</string>
+    <string name="submit">Submit</string>
+
 </resources>

@@ -81,8 +81,8 @@ public class DetailPresenter implements DetailIPresenter {
                 if(response.isSuccessful()) {
                     Log.d(TAG+" - response:", "post submitted to API." + response.body().toString());
                     User user = new User(response.body().getUsername(),
-                                    response.body().getLastName(),
-                                    response.body().getUsername());
+                                    response.body().getFirstName(),
+                                    response.body().getLastName());
 
                     view.updateFiels(user);
                     //TODO
