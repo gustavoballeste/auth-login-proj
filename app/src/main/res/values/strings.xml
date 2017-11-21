@@ -13,5 +13,6 @@
     <string name="hint_last_name">Last name</string>
     <string name="title_auth_user">Autenticating</string>
     <string name="app_title">Authentication</string>
+    <string name="action_create">Create new user</string>
 
 </resources>

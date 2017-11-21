@@ -7,26 +7,38 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_autentication"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
-        android:text="@string/title_enter_post"
+        android:text="@string/title_auth_user"
         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <EditText
-        android:id="@+id/et_token"
+        android:id="@+id/et_register_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:hint="@string/hint_title"
+        android:hint="@string/hint_username"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_autentication" />
+
+    <EditText
+        android:id="@+id/et_register_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/hint_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_register_username" />
 
     <Button
-        android:id="@+id/btn_submit"
+        android:id="@+id/btn_register"
         android:layout_marginTop="18dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,17 +47,28 @@
         android:text="@string/action_submit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_token"/>
+        app:layout_constraintTop_toBottomOf="@+id/et_register_password"/>
+
+    <Button
+        android:id="@+id/btn_login_create"
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:text="@string/action_create"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_register"/>
 
     <TextView
-        android:id="@+id/tv_response"
+        android:id="@+id/tv_register_response"
         android:layout_marginTop="35dp"
         android:visibility="gone"
-        android:text="Oi!"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_submit"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login_create"
         app:layout_constraintBottom_toBottomOf="parent"/>
 </android.support.constraint.ConstraintLayout>

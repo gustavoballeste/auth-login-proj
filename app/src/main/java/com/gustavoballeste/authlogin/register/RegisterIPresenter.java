@@ -1,16 +1,14 @@
-package com.gustavoballeste.authlogin.login;
+package com.gustavoballeste.authlogin.register;
 
-import android.view.View;
 import android.widget.EditText;
 
 /**
  * Created by gustavoballeste on 20/11/17.
  */
 
-public interface LoginIPresenter {
+public interface RegisterIPresenter {
 
     void startService();
     void submit(EditText usernameEt, EditText passwordEt);
     void detach();
-    void register();
 }

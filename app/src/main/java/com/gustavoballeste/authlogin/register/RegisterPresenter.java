@@ -1,8 +1,7 @@
-package com.gustavoballeste.authlogin.login;
+package com.gustavoballeste.authlogin.register;
 
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 
 import com.google.gson.Gson;
@@ -11,6 +10,7 @@ import com.gustavoballeste.authlogin.data.dao.DAOFactory;
 import com.gustavoballeste.authlogin.data.remote.APIService;
 import com.gustavoballeste.authlogin.data.remote.ApiUtils;
 import com.gustavoballeste.authlogin.data.remote.model.Login;
+import com.gustavoballeste.authlogin.data.remote.model.Message;
 import com.gustavoballeste.authlogin.data.remote.model.Token;
 import com.gustavoballeste.authlogin.data.remote.model.util.ObjectDeserializer;
 
@@ -18,23 +18,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginPresenter implements LoginIPresenter {
+public class RegisterPresenter implements RegisterIPresenter {
 
-    private static final String TAG = LoginPresenter.class.getName();
-    private LoginIView view;
+    private static final String TAG = RegisterPresenter.class.getName();
+    private RegisterIView view;
     private APIService mAPIService;
-    Gson gson;
 
-    public LoginPresenter(LoginIView view) {
+    public RegisterPresenter(RegisterIView view) {
         this.view = view;
     }
 
     @Override
     public void startService() {
 
-        gson = new GsonBuilder().registerTypeAdapter(Token.class, new ObjectDeserializer()).create();
-        mAPIService = ApiUtils.getAPIService(gson);
-        gson = null;
+        mAPIService = ApiUtils.getAPIService(null);
     }
 
     @Override
@@ -50,27 +47,26 @@ public class LoginPresenter implements LoginIPresenter {
 
     public void sendPost(Login l) {
         Log.d("sendPost*********", l.getUsername() + ", " + l.getPassword());
-        mAPIService.getToken(l).enqueue(new Callback<Token>() {
+        mAPIService.createUser(l).enqueue(new Callback<Message>() {
             @Override
-            public void onResponse(Call<Token> call, Response<Token> response) {
+            public void onResponse(Call<Message> call, Response<Message> response) {
 
                 if(response.isSuccessful()) {
-                    DAOFactory.getTokenDAO().insert(response.body().getValue());
-                    view.startDetails();
+                    login();
 //                    view.showResponse(response.body().getValue());
                     Log.d(TAG, "post submitted to API." + response.body().toString());
                 }
             }
 
             @Override
-            public void onFailure(Call<Token> call, Throwable t) {
+            public void onFailure(Call<Message> call, Throwable t) {
                 Log.e(TAG, "Unable to submit post to API.");
             }
         });
     }
 
-    public void register() {
-        view.startRegister();
+    public void login() {
+        view.startLogin();
     }
 
     @Override
