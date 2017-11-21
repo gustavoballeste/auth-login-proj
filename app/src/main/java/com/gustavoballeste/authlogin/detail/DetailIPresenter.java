@@ -1,6 +1,7 @@
 package com.gustavoballeste.authlogin.detail;
 
 import android.widget.EditText;
+import com.gustavoballeste.authlogin.data.remote.model.UserUpdate;
 
 /**
  * Created by gustavoballeste on 20/11/17.
@@ -9,5 +10,9 @@ import android.widget.EditText;
 public interface DetailIPresenter {
 
     void startService();
-    void submit(EditText firstName, EditText lastName, EditText password);
+    void submitRetrieve();
+    void submitUpdate(EditText firstName, EditText lastName, EditText username, EditText password);
+    void sendPostRetrieve();
+    void sendPostUpdate(UserUpdate up);
+
 }

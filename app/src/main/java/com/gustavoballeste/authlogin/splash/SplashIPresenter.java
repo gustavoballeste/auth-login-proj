@@ -7,4 +7,5 @@ package com.gustavoballeste.authlogin.splash;
 public interface SplashIPresenter {
 
     void checkAuthStatus();
+    void detach();
 }

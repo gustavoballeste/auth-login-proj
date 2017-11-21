@@ -14,14 +14,13 @@ import java.lang.reflect.Type;
  * Created by gustavoballeste on 19/11/17.
  */
 
-
 public class UserDeserializer implements com.google.gson.JsonDeserializer<User> {
 
     private static final String TAG = UserDeserializer.class.getName();
 
     @Override
     public User deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-
+        Log.d(TAG, "UserDeserializer ************");
         JsonElement userJson = json.getAsJsonObject();
 
         if (json.getAsJsonObject().get("user") != null) {

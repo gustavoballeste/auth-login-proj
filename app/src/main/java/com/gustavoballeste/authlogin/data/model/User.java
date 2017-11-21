@@ -17,15 +17,17 @@ public class User {
     @Expose
     private String firstName;
 
+    @SerializedName("lastName")
+    @Expose
+    private String lastName;
+
     public User(String username, String firstName, String lastName) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    @SerializedName("lastName")
-    @Expose
-    private String lastName;
+    public User(){}
 
     public String getUsername() {
         return username;

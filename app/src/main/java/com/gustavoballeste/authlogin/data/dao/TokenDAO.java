@@ -4,20 +4,29 @@ import com.gustavoballeste.authlogin.data.remote.model.Token;
 
 public class TokenDAO {
 
-    private Token token = new Token(null);
+    private Token token;
 
-    public Token getToken(){
+    public Token get(){
 
+        if (token==null) {
+            token = new Token(null);
+        }
         // TODO
         //Get token from SQLite
-//        token.setValue("NuORxEkCfRxz2Ar4cG&jxG3rj6oFGtxl"); //"username": "user7654321", "password": "anypass"
+
+        token.setValue("NuORxEkCfRxz2Ar4cG&jxG3rj6oFGtxl"); //"username": "user7654321", "password": "anypass"
         return token;
     }
 
-    public void setToken(String token){
+    public void insert(String t){
 
+        if (this.token==null) {
+            this.token = new Token(null);
+        }
+//        this.token.setValue("NuORxEkCfRxz2Ar4cG&jxG3rj6oFGtxl"); //"username": "user7654321", "password": "anypass"
         // TODO
         // Set token in SQLite
-        // token.setValue("NuORxEkCfRxz2Ar4cG&jxG3rj6oFGtxl"); //"username": "user7654321", "password": "anypass"
+
+        this.token.setValue(t);
     }
 }

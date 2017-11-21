@@ -6,7 +6,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import com.gustavoballeste.authlogin.R;
-import com.gustavoballeste.authlogin.login.LoginIActivity;
+import com.gustavoballeste.authlogin.detail.DetailActivity;
+import com.gustavoballeste.authlogin.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity implements SplashIView {
 
@@ -30,16 +31,16 @@ public class SplashActivity extends AppCompatActivity implements SplashIView {
     @Override
     public void startLogin() {
         Intent intent = new Intent(SplashActivity.this,
-                LoginIActivity.class);
+                LoginActivity.class);
         startActivity(intent);
         finish();
     }
 
     @Override
     public void startDetails() {
-        //TODO
-        //Open detail screen
-
+        Intent intent = new Intent(SplashActivity.this,
+                DetailActivity.class);
+        startActivity(intent);
         finish();
     }
 
@@ -51,4 +52,9 @@ public class SplashActivity extends AppCompatActivity implements SplashIView {
         finish();
     }
 
+    @Override
+    protected void onDestroy() {
+        if (presenter != null) presenter.detach();
+        super.onDestroy();
+    }
 }

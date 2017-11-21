@@ -6,11 +6,12 @@ import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.gustavoballeste.authlogin.data.dao.DAOFactory;
 import com.gustavoballeste.authlogin.data.remote.APIService;
 import com.gustavoballeste.authlogin.data.remote.ApiUtils;
 import com.gustavoballeste.authlogin.data.remote.model.Login;
 import com.gustavoballeste.authlogin.data.remote.model.Token;
-import com.gustavoballeste.authlogin.data.remote.model.util.AuthDeserializer;
+import com.gustavoballeste.authlogin.data.remote.model.util.ObjectDeserializer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,6 +22,7 @@ public class LoginPresenter implements LoginIPresenter {
     private static final String TAG = LoginPresenter.class.getName();
     private LoginIView view;
     private APIService mAPIService;
+    Gson gson;
 
     public LoginPresenter(LoginIView view) {
         this.view = view;
@@ -28,9 +30,10 @@ public class LoginPresenter implements LoginIPresenter {
 
     @Override
     public void startService() {
-        Gson gson;
-        gson = new GsonBuilder().registerTypeAdapter(Token.class, new AuthDeserializer()).create();
+
+        gson = new GsonBuilder().registerTypeAdapter(Token.class, new ObjectDeserializer()).create();
         mAPIService = ApiUtils.getAPIService(gson);
+        gson = null;
     }
 
     @Override
@@ -50,9 +53,9 @@ public class LoginPresenter implements LoginIPresenter {
             public void onResponse(Call<Token> call, Response<Token> response) {
 
                 if(response.isSuccessful()) {
-//                    DAOFactory.getTokenDAO().setToken(response.body().getValue());
-//                    view.startDetails();
-                    view.showResponse(response.body().getValue());
+                    DAOFactory.getTokenDAO().insert(response.body().getValue());
+                    view.startDetails();
+//                    view.showResponse(response.body().getValue());
                     Log.d(TAG, "post submitted to API." + response.body().toString());
                 }
             }
@@ -63,4 +66,10 @@ public class LoginPresenter implements LoginIPresenter {
             }
         });
     }
+
+    @Override
+    public void detach() {
+        this.view = null;
+    }
+
 }

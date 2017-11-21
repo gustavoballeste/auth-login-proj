@@ -16,7 +16,7 @@ public class AuthDeserializer implements com.google.gson.JsonDeserializer<Token>
 
     @Override
     public Token deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-
+        Log.d(TAG, "AuthDeserializer ************");
         JsonElement userJson = json.getAsJsonObject();
 
         if (json.getAsJsonObject().get("session") != null) {

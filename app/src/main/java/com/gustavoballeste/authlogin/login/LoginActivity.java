@@ -3,6 +3,7 @@ package com.gustavoballeste.authlogin.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,8 +20,9 @@ import butterknife.OnClick;
  * Created by gustavoballeste on 20/11/17.
  */
 
-public class LoginIActivity extends AppCompatActivity implements LoginIView {
+public class LoginActivity extends AppCompatActivity implements LoginIView {
 
+    private static final String TAG = LoginActivity.class.getName();
     private LoginPresenter presenter;
 
     @BindView(R.id.et_auth_username) EditText usernameEt;
@@ -43,10 +45,17 @@ public class LoginIActivity extends AppCompatActivity implements LoginIView {
     }
 
     @Override
+    protected void onDestroy() {
+        if (presenter != null) presenter.detach();
+        super.onDestroy();
+    }
+
+    @Override
     public void startDetails() {
-        Intent intent = new Intent(LoginIActivity.this,
+        Intent intent = new Intent(LoginActivity.this,
                 DetailActivity.class);
         startActivity(intent);
+        Log.d(TAG, "startDetails() ******");
         finish();
     }
 

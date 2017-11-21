@@ -27,6 +27,6 @@ public interface APIService {
 
     @Headers({"Content-type: application/json"})
     @POST("/user/update")
-    Call<Message> updateUser(@Body UserUpdate userUpdate);
+    Call<Message> updateUser(@Body UserUpdate userUpdate); //TODO, Trocar UserUpdate por um objeto genérico
 
 }

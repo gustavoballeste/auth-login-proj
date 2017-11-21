@@ -17,16 +17,19 @@ public class SplashPresenter implements SplashIPresenter {
 
     public void checkAuthStatus(){
 
-        token = DAOFactory.getTokenDAO().getToken();
+        token = DAOFactory.getTokenDAO().get();
 
         if (token.getValue()==null) {
             Log.d(TAG, "***** No Token *****");
-            //Ir para a tela de login
             view.startLogin();
         } else {
             Log.d(TAG, "***** Has Token *****");
-            //Autenticar o token
             view.startDetails();
         }
+    }
+
+    @Override
+    public void detach() {
+        this.view = null;
     }
 }

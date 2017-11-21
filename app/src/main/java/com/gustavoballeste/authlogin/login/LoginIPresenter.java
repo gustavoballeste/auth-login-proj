@@ -10,4 +10,5 @@ public interface LoginIPresenter {
 
     void startService();
     void submit(EditText usernameEt, EditText passwordEt);
+    void detach();
 }
