@@ -1,10 +1,11 @@
 package com.gustavoballeste.authlogin.detail;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.gustavoballeste.authlogin.data.dao.DAOFactory;
+import com.gustavoballeste.authlogin.data.dao.AppDatabase;
 import com.gustavoballeste.authlogin.data.model.User;
 import com.gustavoballeste.authlogin.data.remote.APIService;
 import com.gustavoballeste.authlogin.data.remote.ApiUtils;
@@ -26,10 +27,12 @@ public class DetailPresenter implements DetailIPresenter {
     private DetailIView view;
     private APIService mAPIService;
     private Token token;
+    private Context context;
 
-    public DetailPresenter(DetailIView view) {
+    public DetailPresenter(DetailIView view, Context c) {
         this.view = view;
         this.token = new Token();
+        context = c;
     }
 
     @Override
@@ -38,21 +41,13 @@ public class DetailPresenter implements DetailIPresenter {
         Gson gson;
         gson = new GsonBuilder().registerTypeAdapter(User.class, new ObjectDeserializer()).create();
         mAPIService = ApiUtils.getAPIService(gson);
-        token = DAOFactory.getTokenDAO().get();
-        sendPostRetrieve();
-    }
-
-    @Override
-    public void submitRetrieve() {
-        if (token==null) {
-            startService();
-        }
+        token = AppDatabase.getAppDatabase(context.getApplicationContext()).tokenDao().get();
         sendPostRetrieve();
     }
 
     @Override
     public void sendPostRetrieve() {
-        Log.d("sendPostRetrieve ******", token.getValue().toString());
+        Log.d("sendPostRetrieve ******", token.getToken().toString());
 
         mAPIService.getUserDetails(token).enqueue(new Callback<User>() {
             @Override
@@ -79,7 +74,7 @@ public class DetailPresenter implements DetailIPresenter {
     public void sendPostUpdateFirstName(String newValue) {
         Log.d("sendPostUpdateFirstName", newValue);
 
-        mAPIService.updateFirstName(token.getValue(), newValue).enqueue(new Callback<Message>() {
+        mAPIService.updateFirstName(token.getToken(), newValue).enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
 
@@ -99,7 +94,7 @@ public class DetailPresenter implements DetailIPresenter {
     public void sendPostUpdateLastName(String newValue) {
         Log.d("sendPostUpdateFirstName", newValue);
 
-        mAPIService.updateLastName(token.getValue(), newValue).enqueue(new Callback<Message>() {
+        mAPIService.updateLastName(token.getToken(), newValue).enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
 
@@ -119,7 +114,7 @@ public class DetailPresenter implements DetailIPresenter {
     public void sendPostUpdatePassword(String newValue) {
         Log.d("sendPostUpdateFirstName", newValue);
 
-        mAPIService.updatePassword(token.getValue(), newValue).enqueue(new Callback<Message>() {
+        mAPIService.updatePassword(token.getToken(), newValue).enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
 

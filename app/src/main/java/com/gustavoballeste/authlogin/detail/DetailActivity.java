@@ -28,7 +28,7 @@ public class DetailActivity extends AppCompatActivity implements DetailIView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
-        presenter = new DetailPresenter(this);
+        presenter = new DetailPresenter(this, this);
         presenter.startService();
     }
 

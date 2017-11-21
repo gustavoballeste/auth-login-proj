@@ -4,5 +4,4 @@ public interface SplashIView {
 
     void startLogin();
     void startDetails();
-    void startRegister();
 }

@@ -17,7 +17,7 @@ public class SplashActivity extends AppCompatActivity implements SplashIView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        presenter = new SplashPresenter(this);
+        presenter = new SplashPresenter(this, this);
 
         Handler handle = new Handler();
         handle.postDelayed(new Runnable() {
@@ -41,14 +41,6 @@ public class SplashActivity extends AppCompatActivity implements SplashIView {
         Intent intent = new Intent(SplashActivity.this,
                 DetailActivity.class);
         startActivity(intent);
-        finish();
-    }
-
-    @Override
-    public void startRegister() {
-        //TODO
-        //Open create user screen
-
         finish();
     }
 

@@ -13,23 +13,23 @@
         android:id="@+id/first_name_label_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="@dimen/margin_single"
+        android:layout_marginStart="@dimen/margin_single"
         android:layout_marginTop="24dp"
         android:text="First name"
-        android:textColor="#424242"
-        android:textSize="16dp" />
+        android:textColor="@color/label_font_color"
+        android:textSize="@dimen/label_font_size" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/first_name_card_view"
         android:layout_width="368dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="8dp">
+        android:layout_marginTop="@dimen/margin_single"
+        android:layout_marginBottom="@dimen/margin_single"
+        android:layout_marginEnd="@dimen/margin_single"
+        android:layout_marginLeft="@dimen/margin_double"
+        android:layout_marginRight="@dimen/margin_double"
+        android:layout_marginStart="@dimen/margin_single">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,16 +42,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="@dimen/margin_double"
+                android:hint="Your first name"
                 android:text="" />
 
             <ImageView
                 android:id="@+id/edit_first_name_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxHeight="8dp"
-                android:maxWidth="8dp"
-                android:layout_marginRight="8dp"
+                android:maxHeight="@dimen/margin_single"
+                android:maxWidth="@dimen/margin_single"
+                android:layout_marginRight="@dimen/margin_single"
                 android:layout_weight=".10"
                 android:src="@drawable/ic_mode_edit_black_24dp" />
         </LinearLayout>
@@ -62,23 +63,23 @@
         android:id="@+id/last_name_label_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="@dimen/margin_single"
+        android:layout_marginStart="@dimen/margin_single"
         android:layout_marginTop="24dp"
         android:text="Last name"
-        android:textColor="#424242"
-        android:textSize="16dp" />
+        android:textColor="@color/label_font_color"
+        android:textSize="@dimen/label_font_size" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/last_name_card_view"
         android:layout_width="368dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp">
+        android:layout_marginBottom="@dimen/margin_single"
+        android:layout_marginEnd="@dimen/margin_single"
+        android:layout_marginLeft="@dimen/margin_double"
+        android:layout_marginRight="@dimen/margin_double"
+        android:layout_marginStart="@dimen/margin_single"
+        android:layout_marginTop="@dimen/margin_single">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -91,14 +92,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginLeft="16dp"
+                android:hint="Your last name"
+                android:layout_marginLeft="@dimen/margin_double"
                 android:text="" />
 
             <ImageView
                 android:id="@+id/edit_last_name_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
+                android:layout_marginRight="@dimen/margin_single"
                 android:layout_weight=".10"
                 android:src="@drawable/ic_mode_edit_black_24dp" />
 
@@ -110,23 +112,23 @@
         android:id="@+id/password_label_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="@dimen/margin_single"
+        android:layout_marginStart="@dimen/margin_single"
         android:layout_marginTop="24dp"
         android:text="Password"
-        android:textColor="#424242"
-        android:textSize="16dp"  />
+        android:textColor="@color/label_font_color"
+        android:textSize="@dimen/label_font_size"  />
 
     <android.support.v7.widget.CardView
         android:id="@+id/password_card_view"
         android:layout_width="368dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp" >
+        android:layout_marginBottom="@dimen/margin_single"
+        android:layout_marginEnd="@dimen/margin_single"
+        android:layout_marginLeft="@dimen/margin_double"
+        android:layout_marginRight="@dimen/margin_double"
+        android:layout_marginStart="@dimen/margin_single"
+        android:layout_marginTop="@dimen/margin_single" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -138,7 +140,7 @@
                 android:id="@+id/password_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="@dimen/margin_double"
                 android:layout_weight="1"
                 android:hint="************" />
 
@@ -146,7 +148,7 @@
                 android:id="@+id/edit_password_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
+                android:layout_marginRight="@dimen/margin_single"
                 android:layout_weight=".10"
                 android:src="@drawable/ic_mode_edit_black_24dp" />
 

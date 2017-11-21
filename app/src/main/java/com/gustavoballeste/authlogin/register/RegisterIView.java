@@ -6,6 +6,5 @@ package com.gustavoballeste.authlogin.register;
 
 public interface RegisterIView {
 
-    void showResponse(String response);
     void startLogin();
 }

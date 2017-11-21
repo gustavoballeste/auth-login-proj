@@ -6,7 +6,7 @@ package com.gustavoballeste.authlogin.login;
 
 public interface LoginIView {
 
-    void showResponse(String response);
     void startDetails();
     void startRegister();
+    void showToast(String message);
 }

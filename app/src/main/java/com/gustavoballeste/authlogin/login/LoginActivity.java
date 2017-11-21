@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gustavoballeste.authlogin.R;
 import com.gustavoballeste.authlogin.detail.DetailActivity;
@@ -79,5 +81,12 @@ public class LoginActivity extends AppCompatActivity implements LoginIView {
             mResponseTv.setVisibility(View.VISIBLE);
         }
         mResponseTv.setText(response);
+    }
+
+    public void showToast(String message) {
+        Toast toast = Toast.makeText(this,
+                "User and/or password not found!", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 60);
+        toast.show();
     }
 }

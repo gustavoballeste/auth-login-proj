@@ -4,15 +4,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.EditText;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.gustavoballeste.authlogin.data.dao.DAOFactory;
 import com.gustavoballeste.authlogin.data.remote.APIService;
 import com.gustavoballeste.authlogin.data.remote.ApiUtils;
 import com.gustavoballeste.authlogin.data.remote.model.Login;
 import com.gustavoballeste.authlogin.data.remote.model.Message;
-import com.gustavoballeste.authlogin.data.remote.model.Token;
-import com.gustavoballeste.authlogin.data.remote.model.util.ObjectDeserializer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,14 +41,13 @@ public class RegisterPresenter implements RegisterIPresenter {
     }
 
     public void sendPost(Login l) {
-        Log.d("sendPost*********", l.getUsername() + ", " + l.getPassword());
+
         mAPIService.createUser(l).enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
 
                 if(response.isSuccessful()) {
                     login();
-//                    view.showResponse(response.body().getValue());
                     Log.d(TAG, "post submitted to API." + response.body().toString());
                 }
             }

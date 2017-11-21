@@ -21,18 +21,16 @@ public class ObjectDeserializer implements com.google.gson.JsonDeserializer<Obje
 
     @Override
     public Object deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        Log.d(TAG, "ObjectDeserializer ************");
+
         JsonElement userJson = json.getAsJsonObject();
 
         if (typeOfT.equals(User.class)) {
             userJson = json.getAsJsonObject().get("user");
             User user = new Gson().fromJson(userJson, User.class);
-            Log.d("deserialize user", userJson.toString());
             return user;
         } else if (typeOfT.equals(Token.class)) {
             userJson = json.getAsJsonObject().get("session");
             Token token = new Gson().fromJson(userJson, Token.class);
-            Log.d("deserialize session", userJson.toString());
             return token;
         } else {
             Log.e(TAG, "Unknown type");

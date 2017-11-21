@@ -1,32 +1,27 @@
 package com.gustavoballeste.authlogin.data.dao;
 
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
+
 import com.gustavoballeste.authlogin.data.remote.model.Token;
 
-public class TokenDAO {
+/**
+ * Created by gustavoballeste on 21/11/17.
+ */
+@Dao
+public interface TokenDao {
+    @Query("SELECT * FROM token")
+    Token get();
 
-    private Token token;
+    @Insert
+    void insert(Token token);
 
-    public Token get(){
+    @Delete
+    void delete(Token token);
 
-        if (token==null) {
-            token = new Token(null);
-        }
-        // TODO
-        //Get token from SQLite
-
-        token.setValue("NuORxEkCfRxz2Ar4cG&jxG3rj6oFGtxl"); //"username": "user7654321", "password": "anypass"
-        return token;
-    }
-
-    public void insert(String t){
-
-        if (this.token==null) {
-            this.token = new Token(null);
-        }
-//        this.token.setValue("NuORxEkCfRxz2Ar4cG&jxG3rj6oFGtxl"); //"username": "user7654321", "password": "anypass"
-        // TODO
-        // Set token in SQLite
-
-        this.token.setValue(t);
-    }
+    @Update
+    void update(Token token);
 }

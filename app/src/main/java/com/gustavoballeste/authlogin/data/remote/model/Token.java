@@ -1,31 +1,35 @@
 package com.gustavoballeste.authlogin.data.remote.model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by gustavoballeste on 19/11/17.
- */
-
+@Entity(tableName = "token")
 public class Token {
 
+    @PrimaryKey @NonNull
+    @ColumnInfo(name = "token")
     @SerializedName("token")
     @Expose
     private String token;
 
-    public String getValue() {
+    public String getToken() {
         return token;
     }
 
-    public Token(String value) {
-        this.token = value;
+    public Token(String token) {
+        this.token = token;
     }
 
     public Token() {
     }
 
-    public void setValue(String value) {
-        this.token = value;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

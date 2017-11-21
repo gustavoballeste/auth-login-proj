@@ -10,7 +10,6 @@ import com.gustavoballeste.authlogin.data.remote.model.UserUpdate;
 public interface DetailIPresenter {
 
     void startService();
-    void submitRetrieve();
     void sendPostRetrieve();
     void sendPostUpdateFirstName(String firstName);
     void sendPostUpdateLastName(String lastName);

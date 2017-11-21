@@ -7,6 +7,6 @@ import com.gustavoballeste.authlogin.data.model.User;
  */
 
 public interface DetailIView {
-    //TODO
+
     void updateScreen(User user);
 }
