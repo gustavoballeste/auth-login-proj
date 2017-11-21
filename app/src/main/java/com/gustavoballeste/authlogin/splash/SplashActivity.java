@@ -11,7 +11,7 @@ import com.gustavoballeste.authlogin.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity implements SplashIView {
 
-    SplashPresenter presenter;
+    SplashIPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

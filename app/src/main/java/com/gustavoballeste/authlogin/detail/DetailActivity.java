@@ -16,7 +16,7 @@ import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity implements DetailIView {
 
-    private DetailPresenter presenter;
+    private DetailIPresenter presenter;
     private Toast toast;
 
     @BindView(R.id.first_name_text_view) TextView firstNameTv;

@@ -26,7 +26,7 @@ import butterknife.OnClick;
 public class LoginActivity extends AppCompatActivity implements LoginIView {
 
     private static final String TAG = LoginActivity.class.getName();
-    private LoginPresenter presenter;
+    private LoginIPresenter presenter;
 
     @BindView(R.id.et_register_username) EditText usernameEt;
     @BindView(R.id.et_register_password) EditText passwordEt;

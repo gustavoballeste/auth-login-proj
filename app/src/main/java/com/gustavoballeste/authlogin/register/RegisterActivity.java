@@ -22,7 +22,7 @@ import butterknife.OnClick;
 public class RegisterActivity extends AppCompatActivity implements RegisterIView {
 
     private static final String TAG = RegisterActivity.class.getName();
-    private RegisterPresenter presenter;
+    private RegisterIPresenter presenter;
 
     @BindView(R.id.et_register_username) EditText usernameEt;
     @BindView(R.id.et_register_password) EditText passwordEt;
