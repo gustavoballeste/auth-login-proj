@@ -40,6 +40,7 @@ public class DetailActivity extends AppCompatActivity implements DetailIView {
 
     @Override
     public void refreshData(TextView textView, String newValue, String message) {
+        textView.setText(newValue);
         toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         toast.show();
     }
