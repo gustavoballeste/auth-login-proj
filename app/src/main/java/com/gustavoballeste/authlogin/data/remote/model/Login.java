@@ -3,10 +3,6 @@ package com.gustavoballeste.authlogin.data.remote.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by gustavoballeste on 19/11/17.
- */
-
 public class Login {
 
     @SerializedName("username")

@@ -14,9 +14,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DetailActivity extends AppCompatActivity implements DetailIView {
+public class DetailActivity extends AppCompatActivity implements DetailIViewContract {
 
-    private DetailIPresenter presenter;
+    private DetailPresenterContract presenter;
     private Toast toast;
 
     @BindView(R.id.first_name_text_view) TextView firstNameTv;
@@ -82,4 +82,24 @@ public class DetailActivity extends AppCompatActivity implements DetailIView {
                         (dialog, input) -> this.presenter.updateValue(input.toString(), lastNameTv,"lastname"))
                 .show();
     }
+
+    @OnClick(R.id.password_card_view)
+    public void showPasswordDialog() {
+        new MaterialDialog.Builder(this)
+                .title(R.string.password_dialog_title)
+                .content(R.string.password_dialog_label)
+                .inputType(
+                        InputType.TYPE_CLASS_TEXT
+                                | InputType.TYPE_TEXT_VARIATION_PERSON_NAME
+                                | InputType.TYPE_TEXT_FLAG_CAP_WORDS)
+                .inputRange(2, 30)
+                .positiveText(R.string.submit)
+                .input(
+                        null,
+                        this.passwordTv.getText(),
+                        false,
+                        (dialog, input) -> this.presenter.updateValue(input.toString(), passwordTv,"password"))
+                .show();
+    }
+
 }

@@ -1,28 +1,21 @@
 package com.gustavoballeste.authlogin.register;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.gustavoballeste.authlogin.R;
-import com.gustavoballeste.authlogin.login.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * Created by gustavoballeste on 20/11/17.
- */
-
-public class RegisterActivity extends AppCompatActivity implements RegisterIView {
+public class RegisterActivity extends AppCompatActivity implements RegisterViewContract {
 
     private static final String TAG = RegisterActivity.class.getName();
-    private RegisterIPresenter presenter;
+    private RegisterPresenterContract presenter;
 
     @BindView(R.id.et_register_username) EditText usernameEt;
     @BindView(R.id.et_register_password) EditText passwordEt;
@@ -31,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterIView
 
     @OnClick(R.id.btn_register_submit)
     public void onClick() {
-        presenter.submit(usernameEt, passwordEt);
+        presenter.submit(usernameEt, passwordEt, this, this.getCurrentFocus());
     }
 
     @Override
@@ -39,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterIView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-        presenter = new RegisterPresenter(this);
+        presenter = new RegisterPresenter(this, this);
         presenter.startService();
     }
 
@@ -49,18 +42,4 @@ public class RegisterActivity extends AppCompatActivity implements RegisterIView
         super.onDestroy();
     }
 
-    @Override
-    public void startLogin() {
-        Intent intent = new Intent(RegisterActivity.this,
-                LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void showResponse(String response) {
-        if(mResponseTv.getVisibility() == View.GONE) {
-            mResponseTv.setVisibility(View.VISIBLE);
-        }
-        mResponseTv.setText(response);
-    }
 }

@@ -11,10 +11,6 @@ import com.gustavoballeste.authlogin.data.remote.model.Token;
 
 import java.lang.reflect.Type;
 
-/**
- * Created by gustavoballeste on 19/11/17.
- */
-
 public class ObjectDeserializer implements com.google.gson.JsonDeserializer<Object> {
 
     private static final String TAG = ObjectDeserializer.class.getName();
@@ -23,7 +19,6 @@ public class ObjectDeserializer implements com.google.gson.JsonDeserializer<Obje
     public Object deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 
         JsonElement userJson = json.getAsJsonObject();
-
         if (typeOfT.equals(User.class)) {
             userJson = json.getAsJsonObject().get("user");
             User user = new Gson().fromJson(userJson, User.class);
@@ -35,7 +30,6 @@ public class ObjectDeserializer implements com.google.gson.JsonDeserializer<Obje
         } else {
             Log.e(TAG, "Unknown type");
         }
-
         return null;
     }
 }

@@ -5,16 +5,12 @@ import android.widget.EditText;
 
 import com.gustavoballeste.authlogin.data.remote.model.Token;
 
-/**
- * Created by gustavoballeste on 20/11/17.
- */
-
-public interface LoginIPresenter {
+public interface LoginPresenterContract {
 
     void startService();
-    void submit(EditText usernameEt, EditText passwordEt);
+    void submit(EditText usernameEt, EditText passwordEt, View view);
     void detach();
     void register();
-    void insertDb(Token token);
+    void insertToken(Token token);
 
 }

@@ -7,10 +7,6 @@ import android.content.Context;
 
 import com.gustavoballeste.authlogin.data.remote.model.Token;
 
-/**
- * Created by gustavoballeste on 21/11/17.
- */
-
 @Database(entities = {Token.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 

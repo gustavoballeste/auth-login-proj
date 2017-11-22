@@ -1,14 +1,17 @@
 package com.gustavoballeste.authlogin.login;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.gustavoballeste.authlogin.app.App;
 import com.gustavoballeste.authlogin.data.dao.AppDatabase;
 import com.gustavoballeste.authlogin.data.remote.APIService;
 import com.gustavoballeste.authlogin.data.remote.ApiUtils;
@@ -16,57 +19,63 @@ import com.gustavoballeste.authlogin.data.remote.model.Login;
 import com.gustavoballeste.authlogin.data.remote.model.Token;
 import com.gustavoballeste.authlogin.data.remote.model.util.ObjectDeserializer;
 
+import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginPresenter implements LoginIPresenter {
+public class LoginPresenter implements LoginPresenterContract {
 
     private static final String TAG = LoginPresenter.class.getName();
-    private LoginIView view;
+    private LoginViewContract view;
     private APIService mAPIService;
-    private Context context;
-    private Toast toast;
 
-    public LoginPresenter(LoginIView view) {
+    public LoginPresenter(LoginViewContract view, Context c) {
         this.view = view;
     }
 
     @Override
     public void startService() {
-
-        Gson gson = new GsonBuilder().registerTypeAdapter(Token.class, new ObjectDeserializer()).create();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Token.class, new ObjectDeserializer()).create();
         mAPIService = ApiUtils.getAPIService(gson);
     }
 
     @Override
-    public void submit(EditText usernameEt, EditText passwordEt) {
+    public void submit(EditText usernameEt, EditText passwordEt, View view) {
+        InputMethodManager imm =
+                (InputMethodManager) view
+                        .getContext()
+                        .getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
         Log.d(TAG, view.toString());
         String username = usernameEt.getText().toString().trim();
         String password = passwordEt.getText().toString().trim();
         if(!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
             Login login = new Login(username, password);
-            sendPost(login, this.context);
+            sendPost(login, view.getContext());
         }
     }
 
     public void sendPost(Login l, Context context) {
-        Log.d("sendPost*********", l.getUsername() + ", " + l.getPassword());
         mAPIService.getToken(l).enqueue(new Callback<Token>() {
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
-
                 if(response.isSuccessful()) {
-                    insertDb(response.body());
-
+                    insertToken(response.body());
                     view.startDetails();
-                    Log.d(TAG, "post submitted to API." + response.body().toString());
+                    Toast.makeText((Context)view, "User authentication successfully", Toast.LENGTH_LONG).show();
                 } else {
-                    //TODO
-                    view.showToast("User not found!");
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        Toast.makeText((Context)view, jObjError.getString("message"), Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText((Context)view, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
                 }
             }
-
             @Override
             public void onFailure(Call<Token> call, Throwable t) {
                 Log.e(TAG, "Unable to submit post to API.");
@@ -85,8 +94,9 @@ public class LoginPresenter implements LoginIPresenter {
     }
 
     @Override
-    public void insertDb(Token token) {
-        AppDatabase.getAppDatabase(context).tokenDao().update(token);
-        AppDatabase.getAppDatabase(context).tokenDao().insert(token);
+    public void insertToken(Token token) {
+        AppDatabase.getAppDatabase(App.getAppContext()).tokenDao().delete(token);
+        AppDatabase.getAppDatabase(App.getAppContext()).tokenDao().insert(token);
+        Log.d(TAG, "Insert Token: " + token.getToken());
     }
 }

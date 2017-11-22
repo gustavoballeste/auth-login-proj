@@ -8,9 +8,6 @@ import android.arch.persistence.room.Update;
 
 import com.gustavoballeste.authlogin.data.remote.model.Token;
 
-/**
- * Created by gustavoballeste on 21/11/17.
- */
 @Dao
 public interface TokenDao {
     @Query("SELECT * FROM token")
