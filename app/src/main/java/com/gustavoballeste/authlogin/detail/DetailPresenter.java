@@ -3,6 +3,7 @@ package com.gustavoballeste.authlogin.detail;
 import android.content.Context;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -13,7 +14,11 @@ import com.gustavoballeste.authlogin.data.remote.APIService;
 import com.gustavoballeste.authlogin.data.remote.ApiUtils;
 import com.gustavoballeste.authlogin.data.remote.model.Message;
 import com.gustavoballeste.authlogin.data.remote.model.Token;
+import com.gustavoballeste.authlogin.data.remote.model.UpdateFirstName;
+import com.gustavoballeste.authlogin.data.remote.model.UpdateLastName;
 import com.gustavoballeste.authlogin.data.remote.model.util.ObjectDeserializer;
+
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,13 +67,23 @@ public class DetailPresenter implements DetailPresenterContract {
     }
 
     @Override
-    public void sendPostUpdateFirstName(String newValue) {
-        Log.d("sendPostUpdateFirstName", newValue);
-        mAPIService.updateFirstName(token.getToken(), newValue).enqueue(new Callback<Message>() {
+    public void sendPostUpdateFirstName(String newValue, TextView textView, String name, String message) {
+        mAPIService.updateFirstName(new UpdateFirstName(token.getToken(), newValue))
+                .enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
                 if(response.isSuccessful()) {
+                    Toast.makeText((Context)view, "User authentication successfully", Toast.LENGTH_LONG).show();
                     Log.d(TAG+" - response:", "post submitted to API." + response.body().toString());
+                    view.refreshData(textView, newValue, message);
+                } else {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        Toast.makeText((Context)view, jObjError.getString("message"), Toast.LENGTH_LONG).show();
+                        Log.d(TAG, jObjError.getString("message"));
+                    } catch (Exception e) {
+                        Toast.makeText((Context)view, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
                 }
             }
             @Override
@@ -79,20 +94,30 @@ public class DetailPresenter implements DetailPresenterContract {
     }
 
     @Override
-    public void sendPostUpdateLastName(String newValue) {
-        Log.d("sendPostUpdateFirstName", newValue);
-        mAPIService.updateLastName(token.getToken(), newValue).enqueue(new Callback<Message>() {
-            @Override
-            public void onResponse(Call<Message> call, Response<Message> response) {
-                if(response.isSuccessful()) {
-                    Log.d(TAG+" - response:", "post submitted to API." + response.body().toString());
-                }
-            }
-            @Override
-            public void onFailure(Call<Message> call, Throwable t) {
-                Log.e(TAG, "Unable to submit post to API.");
-            }
-        });
+    public void sendPostUpdateLastName(String newValue, TextView textView, String name, String message) {
+        mAPIService.updateLastName(new UpdateLastName(token.getToken(), newValue))
+                .enqueue(new Callback<Message>() {
+                    @Override
+                    public void onResponse(Call<Message> call, Response<Message> response) {
+                        if(response.isSuccessful()) {
+                            Toast.makeText((Context)view, "User authentication successfully", Toast.LENGTH_LONG).show();
+                            Log.d(TAG+" - response:", "post submitted to API." + response.body().toString());
+                            view.refreshData(textView, newValue, message);
+                        } else {
+                            try {
+                                JSONObject jObjError = new JSONObject(response.errorBody().string());
+                                Toast.makeText((Context)view, jObjError.getString("message"), Toast.LENGTH_LONG).show();
+                                Log.d(TAG, jObjError.getString("message"));
+                            } catch (Exception e) {
+                                Toast.makeText((Context)view, e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<Message> call, Throwable t) {
+                        Log.e(TAG, "Unable to submit post to API.");
+                    }
+                });
     }
 
     @Override
@@ -114,24 +139,23 @@ public class DetailPresenter implements DetailPresenterContract {
     }
 
     @Override
-    public void updateValue(String newValue, TextView textView, String name) {
+    public void updateRemote(String newValue, TextView textView, String name) {
         String message = "";
         if (!newValue.equals(textView.getText().toString())) {
             switch (name) {
-                case "firstname":
+                case "firstName":
                     message = "First name updated successfully!";
-                    sendPostUpdateFirstName(newValue);
+                    sendPostUpdateFirstName(newValue, textView, name, message);
                     break;
-                case "lastname":
+                case "lastName":
                     message = "Last name updated successfully!";
-                    sendPostUpdateLastName(newValue);
+                    sendPostUpdateLastName(newValue, textView, name, message);
                     break;
                 case "password":
                     message = "Password updated successfully!";
                     sendPostUpdatePassword(newValue);
                     break;
             }
-            view.refreshData(textView, newValue, message);
         }
     }
 }

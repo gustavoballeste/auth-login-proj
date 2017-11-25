@@ -4,7 +4,8 @@ import com.gustavoballeste.authlogin.data.model.User;
 import com.gustavoballeste.authlogin.data.remote.model.Message;
 import com.gustavoballeste.authlogin.data.remote.model.Token;
 import com.gustavoballeste.authlogin.data.remote.model.Login;
-import com.gustavoballeste.authlogin.data.remote.model.UserUpdate;
+import com.gustavoballeste.authlogin.data.remote.model.UpdateFirstName;
+import com.gustavoballeste.authlogin.data.remote.model.UpdateLastName;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -27,16 +28,15 @@ public interface APIService {
     @POST("/user/create")
     Call<Message> createUser(@Body Login userRegister);
 
-    @FormUrlEncoded
     @POST("/user/update")
-    Call<Message> updateFirstName(@Field("token") String token, @Field("firstName") String firstname);
+    Call<Message> updateFirstName(@Body UpdateFirstName updateFirstName);
 
-    @FormUrlEncoded
     @POST("/user/update")
-    Call<Message> updateLastName(@Field("token") String token, @Field("lastName") String lastname);
+    Call<Message> updateLastName(@Body UpdateLastName updateLastName);
 
     @FormUrlEncoded
     @POST("/user/update")
     Call<Message> updatePassword(@Field("token") String token, @Field("password") String password);
+
 
 }

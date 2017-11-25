@@ -6,8 +6,8 @@ public interface DetailPresenterContract {
 
     void startService();
     void sendPostRetrieve();
-    void sendPostUpdateFirstName(String firstName);
-    void sendPostUpdateLastName(String lastName);
+    void sendPostUpdateFirstName(String newValue, TextView textView, String name, String message);
+    void sendPostUpdateLastName(String newValue, TextView textView, String name, String message);
     void sendPostUpdatePassword(String passwordName);
-    void updateValue(String newValue, TextView textView, String name);
+    void updateRemote(String newValue, TextView textView, String name);
 }

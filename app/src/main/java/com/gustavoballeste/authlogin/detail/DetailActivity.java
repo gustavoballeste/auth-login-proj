@@ -41,8 +41,8 @@ public class DetailActivity extends AppCompatActivity implements DetailIViewCont
     @Override
     public void refreshData(TextView textView, String newValue, String message) {
         textView.setText(newValue);
-        toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-        toast.show();
+//        toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+//        toast.show();
     }
 
     @OnClick(R.id.first_name_card_view)
@@ -60,7 +60,7 @@ public class DetailActivity extends AppCompatActivity implements DetailIViewCont
                         null,
                         this.firstNameTv.getText(),
                         false,
-                        (dialog, input) -> this.presenter.updateValue(input.toString(), firstNameTv,"firstname"))
+                        (dialog, input) -> this.presenter.updateRemote(input.toString(), firstNameTv,"firstName"))
                 .show();
     }
 
@@ -79,7 +79,7 @@ public class DetailActivity extends AppCompatActivity implements DetailIViewCont
                         null,
                         this.lastNameTv.getText(),
                         false,
-                        (dialog, input) -> this.presenter.updateValue(input.toString(), lastNameTv,"lastname"))
+                        (dialog, input) -> this.presenter.updateRemote(input.toString(), lastNameTv,"lastName"))
                 .show();
     }
 
@@ -98,7 +98,7 @@ public class DetailActivity extends AppCompatActivity implements DetailIViewCont
                         null,
                         this.passwordTv.getText(),
                         false,
-                        (dialog, input) -> this.presenter.updateValue(input.toString(), passwordTv,"password"))
+                        (dialog, input) -> this.presenter.updateRemote(input.toString(), passwordTv,"password"))
                 .show();
     }
 

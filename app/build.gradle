@@ -38,10 +38,8 @@ dependencies {
     //Material Dialogs
     implementation 'com.afollestad.material-dialogs:core:0.9.5.0'
 
-    // Retrofit
+    // Retrofit & parsing
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-
-    //Parsing
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
