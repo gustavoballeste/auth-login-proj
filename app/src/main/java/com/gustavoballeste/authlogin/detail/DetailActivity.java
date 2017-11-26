@@ -1,5 +1,6 @@
 package com.gustavoballeste.authlogin.detail;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -9,9 +10,10 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.gustavoballeste.authlogin.R;
 import com.gustavoballeste.authlogin.data.model.User;
+import com.gustavoballeste.authlogin.login.LoginActivity;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity implements DetailIViewContract {
@@ -22,6 +24,11 @@ public class DetailActivity extends AppCompatActivity implements DetailIViewCont
     @BindView(R.id.first_name_text_view) TextView firstNameTv;
     @BindView(R.id.last_name_text_view) TextView lastNameTv;
     @BindView(R.id.password_text_view) TextView passwordTv;
+
+    @OnClick(R.id.btn_logout)
+    public void onClick() {
+        presenter.logout();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,14 @@ public class DetailActivity extends AppCompatActivity implements DetailIViewCont
         textView.setText(newValue);
 //        toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
 //        toast.show();
+    }
+
+    @Override
+    public void backLogin() {
+        Intent intent = new Intent(DetailActivity.this,
+                LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @OnClick(R.id.first_name_card_view)

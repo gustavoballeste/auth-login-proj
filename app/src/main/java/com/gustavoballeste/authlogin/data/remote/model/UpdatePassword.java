@@ -3,26 +3,26 @@ package com.gustavoballeste.authlogin.data.remote.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UpdateFirstName {
+public class UpdatePassword {
 
     @SerializedName("token")
     @Expose
     private String token;
 
-    @SerializedName("firstName")
+    @SerializedName("password")
     @Expose
-    private String firstName;
+    private String password;
 
-    public UpdateFirstName(String token, String firstName) {
+    public UpdatePassword(String token, String firstName) {
         this.token = token;
-        this.firstName = firstName;
+        this.password = firstName;
     }
 
     public String getToken() {
         return token;
     }
     public String getfirstName() {
-        return firstName;
+        return password;
     }
 
 }

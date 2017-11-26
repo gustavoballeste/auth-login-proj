@@ -43,7 +43,13 @@ public class RegisterPresenter implements RegisterPresenterContract {
 
         String username = usernameEt.getText().toString().trim();
         String password = passwordEt.getText().toString().trim();
-        if(!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
+        if (username.length() == 0) {
+            usernameEt.requestFocus();
+            usernameEt.setError("Digite o login");
+        } else if (password.length() == 0) {
+            passwordEt.requestFocus();
+            passwordEt.setError("Digite a senha");
+        } else {
             Login login = new Login(username, password);
             sendPost(login);
         }

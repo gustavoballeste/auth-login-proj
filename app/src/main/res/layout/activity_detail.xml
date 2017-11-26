@@ -153,6 +153,17 @@
                 android:src="@drawable/ic_mode_edit_black_24dp" />
 
         </LinearLayout>
-
     </android.support.v7.widget.CardView>
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_marginTop="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:text="@string/action_logout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_card_view"/>
+
 </LinearLayout>

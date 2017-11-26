@@ -8,4 +8,5 @@ public interface DetailIViewContract {
 
     void updateScreen(User user);
     void refreshData(TextView textView, String newValue, String message);
+    void backLogin();
 }

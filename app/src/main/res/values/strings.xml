@@ -21,7 +21,8 @@
     <string name="last_name_dialog_title">Last name</string>
     <string name="last_name_dialog_label">What\'s your last name?</string>
     <string name="password_dialog_title">Password</string>
-    <string name="password_dialog_label">Choose your password</string>
+    <string name="password_dialog_label">Choose your new password</string>
     <string name="submit">Submit</string>
+    <string name="action_logout">Logout</string>
 
 </resources>

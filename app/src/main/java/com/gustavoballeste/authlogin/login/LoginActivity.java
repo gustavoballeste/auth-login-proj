@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity implements LoginViewContrac
         presenter.register();
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

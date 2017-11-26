@@ -53,7 +53,14 @@ public class LoginPresenter implements LoginPresenterContract {
         Log.d(TAG, view.toString());
         String username = usernameEt.getText().toString().trim();
         String password = passwordEt.getText().toString().trim();
-        if(!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
+
+        if (username.length() == 0) {
+            usernameEt.requestFocus();
+            usernameEt.setError("Digite o login");
+        } else if (password.length() == 0) {
+            passwordEt.requestFocus();
+            passwordEt.setError("Digite a senha");
+        } else {
             Login login = new Login(username, password);
             sendPost(login, view.getContext());
         }
@@ -64,6 +71,7 @@ public class LoginPresenter implements LoginPresenterContract {
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
                 if(response.isSuccessful()) {
+                    Log.d("Insert token", response.body().getToken());
                     insertToken(response.body());
                     view.startDetails();
                     Toast.makeText((Context)view, "User authentication successfully", Toast.LENGTH_LONG).show();
@@ -95,7 +103,7 @@ public class LoginPresenter implements LoginPresenterContract {
 
     @Override
     public void insertToken(Token token) {
-        AppDatabase.getAppDatabase(App.getAppContext()).tokenDao().delete(token);
+        AppDatabase.getAppDatabase(App.getAppContext()).tokenDao().delete();
         AppDatabase.getAppDatabase(App.getAppContext()).tokenDao().insert(token);
         Log.d(TAG, "Insert Token: " + token.getToken());
     }
