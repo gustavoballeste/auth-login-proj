@@ -2,7 +2,7 @@ package com.gustavoballeste.authlogin.data.remote;
 
 import com.gustavoballeste.authlogin.data.model.User;
 import com.gustavoballeste.authlogin.data.remote.model.Message;
-import com.gustavoballeste.authlogin.data.remote.model.Token;
+import com.gustavoballeste.authlogin.data.model.Token;
 import com.gustavoballeste.authlogin.data.remote.model.Login;
 import com.gustavoballeste.authlogin.data.remote.model.UpdateFirstName;
 import com.gustavoballeste.authlogin.data.remote.model.UpdateLastName;
@@ -10,9 +10,6 @@ import com.gustavoballeste.authlogin.data.remote.model.UpdatePassword;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface APIService {

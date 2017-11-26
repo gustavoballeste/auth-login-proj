@@ -7,7 +7,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.gustavoballeste.authlogin.data.model.User;
-import com.gustavoballeste.authlogin.data.remote.model.Token;
+import com.gustavoballeste.authlogin.data.model.Token;
 
 import java.lang.reflect.Type;
 

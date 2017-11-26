@@ -2,7 +2,6 @@ package com.gustavoballeste.authlogin.login;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -16,7 +15,7 @@ import com.gustavoballeste.authlogin.data.dao.AppDatabase;
 import com.gustavoballeste.authlogin.data.remote.APIService;
 import com.gustavoballeste.authlogin.data.remote.ApiUtils;
 import com.gustavoballeste.authlogin.data.remote.model.Login;
-import com.gustavoballeste.authlogin.data.remote.model.Token;
+import com.gustavoballeste.authlogin.data.model.Token;
 import com.gustavoballeste.authlogin.data.remote.model.util.ObjectDeserializer;
 
 import org.json.JSONObject;

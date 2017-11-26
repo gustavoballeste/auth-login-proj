@@ -5,7 +5,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-import com.gustavoballeste.authlogin.data.remote.model.Token;
+import com.gustavoballeste.authlogin.data.model.Token;
 
 @Database(entities = {Token.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {

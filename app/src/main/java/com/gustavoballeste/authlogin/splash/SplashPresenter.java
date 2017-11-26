@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.gustavoballeste.authlogin.app.App;
 import com.gustavoballeste.authlogin.data.dao.AppDatabase;
-import com.gustavoballeste.authlogin.data.remote.model.Token;
+import com.gustavoballeste.authlogin.data.model.Token;
 import com.gustavoballeste.authlogin.detail.DetailActivity;
 import com.gustavoballeste.authlogin.login.LoginActivity;
 

@@ -1,4 +1,4 @@
-package com.gustavoballeste.authlogin.data.remote.model;
+package com.gustavoballeste.authlogin.data.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

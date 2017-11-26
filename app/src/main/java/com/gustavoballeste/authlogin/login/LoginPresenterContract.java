@@ -3,7 +3,7 @@ package com.gustavoballeste.authlogin.login;
 import android.view.View;
 import android.widget.EditText;
 
-import com.gustavoballeste.authlogin.data.remote.model.Token;
+import com.gustavoballeste.authlogin.data.model.Token;
 
 public interface LoginPresenterContract {
 

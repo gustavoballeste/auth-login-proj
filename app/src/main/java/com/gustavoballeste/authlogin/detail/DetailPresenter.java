@@ -7,13 +7,14 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.gustavoballeste.authlogin.app.App;
 import com.gustavoballeste.authlogin.data.dao.AppDatabase;
 import com.gustavoballeste.authlogin.data.model.User;
 import com.gustavoballeste.authlogin.data.remote.APIService;
 import com.gustavoballeste.authlogin.data.remote.ApiUtils;
 import com.gustavoballeste.authlogin.data.remote.model.Message;
-import com.gustavoballeste.authlogin.data.remote.model.Token;
+import com.gustavoballeste.authlogin.data.model.Token;
 import com.gustavoballeste.authlogin.data.remote.model.UpdateFirstName;
 import com.gustavoballeste.authlogin.data.remote.model.UpdateLastName;
 import com.gustavoballeste.authlogin.data.remote.model.UpdatePassword;
